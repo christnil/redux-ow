@@ -14,7 +14,8 @@ class MainPanel extends Component {
     return (
       <div>
         <SupplementMainList supplements={supplements} actions={actions} />
-        <div className="supplement-remove-link" onClick={() => save.saveSupplements(supplements)}>{'spara'}</div>
+        <div className="supplement-remove-link" onClick={() => save.saveSupplements(supplements)}>{'boka'}</div>
+        <div className={!saving ? 'hidden' : ''}>sparar</div>
       </div>
     );
   }

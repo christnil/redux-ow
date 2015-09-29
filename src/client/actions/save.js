@@ -26,8 +26,8 @@ export function saveSupplements(supplements) {
    return function (dispatch) {
       dispatch(saveSupplementsRequest(supplements));
 
-      return http.post(`/save`, {supplements})
+      return http.post(`/save`, {supplements},{timeout: 10000})
          .then(response => dispatch(saveSupplementsResponse(response)))
-         .catch(response => dispatch(saveSupplementsResponse(response)));
+         .catch(response => dispatch(saveSupplementsError(response)));
    };
 }

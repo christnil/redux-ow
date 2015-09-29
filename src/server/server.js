@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import rootReducer from '../client/reducers';
 import MainPanel from '../client/containers/MainPanel';
 import Sidebar from '../client/containers/Sidebar';
+import bodyParser from 'body-parser';
 
 const app = Express();
 const port = process.env.PORT || 3002;
@@ -24,6 +25,9 @@ app.use(function(req, res, next) {
 
 // Use this middleware to serve up static files built into the public directory
 app.use(require('serve-static')(path.join(__dirname, '../../public')));
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 var supplements = [
     {
@@ -129,8 +133,9 @@ app.get('/main', function (req, res) {
 });
 
 app.post('/save', function (req, res) {
-   console.log('SAVE');
-   res.json({message: 'ok'});
+   supplements = req.body.supplements;
+   if (Math.random() * 100 < 67)
+      setTimeout(() => res.json({message: 'ok'}), 2000);
 });
 
 app.listen(port);
