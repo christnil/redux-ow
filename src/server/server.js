@@ -129,6 +129,7 @@ app.get('/main', function (req, res) {
 });
 
 app.post('/save', function (req, res) {
+   console.log('SAVE');
    res.json({message: 'ok'});
 });
 

@@ -3,15 +3,18 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import SupplementMainList from '../components/SupplementMainList';
 import * as SupplementActions from '../actions/supplements';
+import * as SaveActions from '../actions/save';
 
 class MainPanel extends Component {
   render() {
-    const { supplements, dispatch } = this.props;
+    const { supplements, dispatch, saving } = this.props;
     const actions = bindActionCreators(SupplementActions, dispatch);
+    const save = bindActionCreators(SaveActions, dispatch);
 
     return (
       <div>
         <SupplementMainList supplements={supplements} actions={actions} />
+        <div className="supplement-remove-link" onClick={() => save.saveSupplements(supplements)}>{'spara'}</div>
       </div>
     );
   }
@@ -23,9 +26,10 @@ MainPanel.propTypes = {
 };
 
 function mapStateToProps(state) {
-  return {
-    supplements: state.supplements
-  };
+   return {
+      supplements: state.supplements,
+      saving: state.save
+   };
 }
 
 export default connect(mapStateToProps)(MainPanel);

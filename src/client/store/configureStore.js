@@ -1,20 +1,17 @@
+import thunkMiddleware from 'redux-thunk';
+import createLogger from 'redux-logger'
 import { createStore, applyMiddleware } from 'redux';
 import rootReducer from '../reducers';
 
 export default function configureStore(initialState) {
-	/**
-	* Logs all actions and states after they are dispatched.
-	*/
-	const logger = store => next => action => {
-		console.group(action.type);
-		console.info('dispatching', action);
-		let result = next(action);
-		console.log('next state', store.getState());
-		console.groupEnd(action.type);
-		return result;
-	};
 
-	let createStoreWithMiddleware = applyMiddleware(logger)(createStore);
+	const loggerMiddleware = createLogger();
+
+	const createStoreWithMiddleware = applyMiddleware(
+		thunkMiddleware,
+		loggerMiddleware
+	)(createStore);
+
 	const store = createStoreWithMiddleware(rootReducer, initialState);
 
 	if (module.hot) {
