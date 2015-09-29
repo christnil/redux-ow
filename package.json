@@ -53,6 +53,7 @@
     "gulp-rename": "^1.2.2",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-autoprefixer": "^3.0.2",
-    "gulp-sass": "^2.0.4"
+    "gulp-sass": "^2.0.4",
+    "redux-devtools": "^2.1.5"
   }
 }

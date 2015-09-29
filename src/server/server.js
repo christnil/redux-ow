@@ -7,6 +7,7 @@ import rootReducer from '../client/reducers';
 import MainPanel from '../client/containers/MainPanel';
 import Sidebar from '../client/containers/Sidebar';
 import bodyParser from 'body-parser';
+import { DevTools, DebugPanel, LogMonitor } from 'redux-devtools/lib/react';
 
 const app = Express();
 const port = process.env.PORT || 3002;
@@ -133,9 +134,10 @@ app.get('/main', function (req, res) {
 });
 
 app.post('/save', function (req, res) {
-   supplements = req.body.supplements;
-   if (Math.random() * 100 < 67)
+   if (Math.random() * 100 < 67) {
+      supplements = req.body.supplements;
       setTimeout(() => res.json({message: 'ok'}), 2000);
+   }
 });
 
 app.listen(port);
