@@ -1,121 +1,126 @@
+$clickable-text-color: #00f;
+$ow-background-color: #ededea;
+$panel-background: #fff;
+
 .supplement-summary-list {
-   width: 208px;
+  width: 208px;
 }
 
 .supplement-summary {
-   overflow: auto;
-   margin-bottom: 12px;
+  margin-bottom: 12px;
+  overflow: auto;
 
-   .supplement-name {
-      float: left;
-   }
 
-   .supplement-price-component {
-      float: right;
-   }
+  .supplement-name {
+    float: left;
+  }
 
-   &:last-child {
-      margin-bottom: 0;
-   }
+  .supplement-price-component {
+    float: right;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .supplement-remove-link {
-   color: blue;
-   cursor: pointer;
+  color: $clickable-text-color;
+  cursor: pointer;
 
-   &:hover {
-      text-decoration: underline;
-   }
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 .supplements {
-   overflow: auto;
+  overflow: auto;
 }
 
 .supplement-list {
-   float: left;
-   overflow: auto;
+  float: left;
+  overflow: auto;
 
-   .supplement {
-      float: left;
-      overflow: auto;
-      width: 100%;
-   }
+  .supplement {
+    float: left;
+    overflow: auto;
+    width: 100%;
+  }
 
-   .supplement-list-item {
-      border-bottom: 1px solid lightGray;
-      float: left;
-      overflow: auto;
+  .supplement-list-item {
+    border-bottom: 1px solid lightGray;
+    float: left;
+    overflow: auto;
 
-      &:last-child {
-         border-bottom: none;
-      }
-   }
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
 
-   .supplement-heading {
-      width: 100%;
-   }
+  .supplement-heading {
+    width: 100%;
+  }
 
-   .supplement-image {
-      width: 260px;
-      float: left;
-   }
+  .supplement-image {
+    float: left;
+    width: 260px;
+  }
 
-   .supplement-info-row {
-      float: left;
-      width: 100%
-   }
+  .supplement-info-row {
+    float: left;
+    width: 100%;
+  }
 
-   .supplement-info-text {
-      float: left;
-      width: 418px;
-      margin-top: 0;
-      margin-left: 12px;
-   }
+  .supplement-info-text {
+    float: left;
+    margin-left: 12px;
+    margin-top: 0;
+    width: 418px;
+  }
 
-   .supplement-toggle {
-      margin: 50px;
-      margin-right: 7px;
-      margin-bottom: 29px;
-   }
+  .supplement-toggle {
+    margin: 50px;
+    margin-bottom: 29px;
+    margin-right: 7px;
+  }
 }
 
 .summary-price {
-   margin-top: 10px;
-   border-top: 1px solid lightGray;
-   padding-top: 4px;
+  border-top: 1px solid lightGray;
+  margin-top: 10px;
+  padding-top: 4px;
 }
 
 .hidden {
-   display: none;
+  display: none;
 }
 
 .two-column {
-   float: left;
-   overflow: auto;
-   width: 1050px;
-   margin-left: 15px;
-   background-color: rgb(237, 237, 234);
+  background-color: $ow-background-color;
+  float: left;
+  margin-left: 15px;
+  overflow: auto;
+  width: 1050px;
 
-   .panel {
-      float: left;
-      padding: 10px;
-      background-color: #fff;
-   }
+  .panel {
+    background-color: $panel-background;
+    float: left;
+    padding: 10px;
+  }
 
-   .left-panel{
-      width: 230;
-      margin-right: 15px;
-      padding-top: 25px;
-   }
+  .left-panel {
+    margin-right: 15px;
+    padding-top: 25px;
+    width: 230;
+  }
 
-   .main-panel {
-      max-width: 750px;
-      width: 750px;
+  .main-panel {
+    max-width: 750px;
+    width: 750px;
 
-      .unstyled-list {
-         list-style: none;
-         padding-left: 0px;
-      }
-   }
+    .unstyled-list {
+      list-style: none;
+      padding-left: 0;
+    }
+  }
 }

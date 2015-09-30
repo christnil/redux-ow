@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import SupplementMainList from '../components/SupplementMainList';
+import SupplementMainList from '../components/SupplementMainList.jsx';
 import * as SupplementActions from '../actions/supplements';
 import * as SaveActions from '../actions/save';
 

@@ -134,10 +134,8 @@ app.get('/main', function (req, res) {
 });
 
 app.post('/save', function (req, res) {
-   if (Math.random() * 100 < 67) {
-      supplements = req.body.supplements;
-      setTimeout(() => res.json({message: 'ok'}), 2000);
-   }
+   supplements = req.body.supplements;
+   setTimeout(() => res.json({message: 'ok'}), 1000);
 });
 
 app.listen(port);

@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import SupplementItem from './SupplementItem';
+import SupplementItem from './SupplementItem.jsx';
 
 class SupplementMainList extends Component {
   constructor(props, context) {

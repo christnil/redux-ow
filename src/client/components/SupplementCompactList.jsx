@@ -15,19 +15,19 @@ class SupplementCompactList extends Component {
    );
 
     return (
-      <section className="supplements-summary">
-        <div className="supplement-summary-list">
+      <section className='supplements-summary'>
+        <div className='supplement-summary-list'>
           {filteredSupplements.map(supplement =>
-            <div key={supplement.id} className="supplement-summary">
-               <div className="supplement-name">{supplement.heading}</div>
-               <div className="supplement-price-component">
-                  <div className="supplement-price">{supplement.price}</div>
-                  <div className="supplement-remove-link" onClick={() => actions.selectSupplement(supplement.id)}>{'ta bort'}</div>
+            <div key={supplement.id} className='supplement-summary'>
+               <div className='supplement-name'>{supplement.heading}</div>
+               <div className='supplement-price-component'>
+                  <div className='supplement-price'>{supplement.price}</div>
+                  <div className='supplement-remove-link' onClick={() => actions.selectSupplement(supplement.id)}>{'ta bort'}</div>
                </div>
             </div>
           )}
        </div>
-        <div className={"summary-price" + (totalprice ? '' : ' hidden')}>
+        <div className={'summary-price' + (totalprice ? '' : ' hidden')}>
            Totalt: {totalprice}
         </div>
       </section>

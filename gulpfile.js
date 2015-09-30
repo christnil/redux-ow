@@ -1,5 +1,5 @@
 var gulp = require('gulp');
-var gutil = require("gulp-util");
+var gutil = require('gulp-util');
 var watch = require('gulp-watch');
 var path = require('path');
 var webpack = require('webpack');
@@ -47,11 +47,16 @@ gulp.task('webpack', function(callback) {
 				test: /\.css?$/,
 				loaders: ['style', 'raw'],
 				include: __dirname
+			}, {
+            test: /\.jsx$/,
+				loaders: ['babel'],
+				exclude: /node_modules/,
+				include: __dirname
 			}]
 		}
     }, function(err, stats) {
-        if(err) throw new gutil.PluginError("webpack", err);
-        gutil.log("[webpack]", stats.toString({
+        if (err) throw new gutil.PluginError('webpack', err);
+        gutil.log('[webpack]', stats.toString({
             // output options
         }));
         callback();
@@ -59,7 +64,7 @@ gulp.task('webpack', function(callback) {
 });
 
 gulp.task('watch', ['browser-sync', 'nodemon', 'webpack', 'build-sass'], function() {
-   gulp.watch('src/client/**/*.js', ['webpack']).on('change', reportChange);
+   gulp.watch(['src/client/**/*.js', 'src/client/**/*.jsx'], ['webpack']).on('change', reportChange);
    gulp.watch('src/client/**/*.scss', ['build-sass']).on('change', reportChange);
 });
 
