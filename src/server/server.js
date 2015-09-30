@@ -10,7 +10,7 @@ import bodyParser from 'body-parser';
 import { DevTools, DebugPanel, LogMonitor } from 'redux-devtools/lib/react';
 
 const app = Express();
-const port = process.env.PORT || 3002;
+const port = process.env.PORT || 3000;
 
 app.use(function(req, res, next) {
    res.header('Access-Control-Allow-Origin', '*');
@@ -41,6 +41,10 @@ app.use('/public', require('serve-static')(path.join(__dirname, '../../public'))
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+app.get('/', function(req, res) {
+   res.redirect('/standalone');
+})
 
 var supplements = [
     {

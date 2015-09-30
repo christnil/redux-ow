@@ -37,9 +37,28 @@ gulp.task('webpack', function(callback) {
     });
 });
 
-gulp.task('watch', ['browser-sync', 'nodemon', 'webpack', 'build-sass'], function() {
+gulp.task('run', ['browser-sync', 'nodemon', 'webpack', 'build-sass'], function() {
    gulp.watch(['src/client/**/*.js', 'src/client/**/*.jsx'], ['webpack']).on('change', reportChange);
    gulp.watch('src/client/**/*.scss', ['build-sass']).on('change', reportChange);
+});
+
+gulp.task('watch', function (done) {
+   var called = false;
+   return nodemon({
+      // nodemon our expressjs server
+      script: 'src/server/index.js',
+      // watch core server file(s) that require server restart on change
+      watch: 'src/server/**/*',
+      env: {
+         NODE_ENV: 'development',
+         PORT: 3000
+      }
+   })
+   .on('start', function onStart() {
+      // ensure start only got called once
+      if (!called) { done(); }
+      called = true;
+   });
 });
 
 // we'd need a slight delay to reload browsers
@@ -47,30 +66,30 @@ gulp.task('watch', ['browser-sync', 'nodemon', 'webpack', 'build-sass'], functio
 var BROWSER_SYNC_RELOAD_DELAY = 2000;
 
 gulp.task('nodemon', ['webpack'], function (done) {
-  var called = false;
-  return nodemon({
-    // nodemon our expressjs server
-    script: 'src/server/index.js',
-    // watch core server file(s) that require server restart on change
-    watch: 'src/server/**/*',
-    env: {
-      NODE_ENV: 'development',
-      PORT: port
-    }
-  })
-  .on('start', function onStart() {
-    // ensure start only got called once
-    if (!called) { done(); }
-    called = true;
-  })
-  .on('restart', function onRestart() {
-    // reload connected browsers after a slight delay
-    setTimeout(function reload() {
+   var called = false;
+   return nodemon({
+      // nodemon our expressjs server
+      script: 'src/server/index.js',
+      // watch core server file(s) that require server restart on change
+      watch: 'src/server/**/*',
+      env: {
+         NODE_ENV: 'production',
+         PORT: port
+      }
+   })
+   .on('start', function onStart() {
+      // ensure start only got called once
+      if (!called) { done(); }
+      called = true;
+   })
+   .on('restart', function onRestart() {
+      // reload connected browsers after a slight delay
+      setTimeout(function reload() {
       browserSync.reload({
         stream: false
       });
-    }, BROWSER_SYNC_RELOAD_DELAY);
-  });
+      }, BROWSER_SYNC_RELOAD_DELAY);
+   });
 });
 
 gulp.task('browser-sync', ['nodemon'], function () {
