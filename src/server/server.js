@@ -37,7 +37,7 @@ if (dev) {
 }
 
 // Use this middleware to serve up static files built into the public directory
-app.use(require('serve-static')(path.join(__dirname, '../../public')));
+app.use('/public', require('serve-static')(path.join(__dirname, '../../public')));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -104,7 +104,7 @@ function renderFullPage(html, sidebarhtml, initialState) {
    <html>
       <head>
          <title>TODO</title>
-         ${dev ? '' : '<link rel="stylesheet" type="text/css" href="client.css">'}
+         ${dev ? '' : '<link rel="stylesheet" type="text/css" href="/public/client.css">'}
       </head>
       <body class="two-column">
          <div class="left-panel panel">
@@ -116,7 +116,7 @@ function renderFullPage(html, sidebarhtml, initialState) {
          <script>
             window.__INITIAL_STATE__ = ${JSON.stringify(initialState)};
          </script>
-         ${dev ? '<script src="public/bundle.js"></script>' : '<script src="/bundle.js"></script>'}
+         <script src="/public/bundle.js"></script>
       </body>
    </html>
     `;
