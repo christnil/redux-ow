@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "Redux TodoMVC example",
   "scripts": {
-    "start": "node server.js",
+    "start": "set NODE_ENV=production && node ./src/server/index.js",
     "test": "mocha --recursive --compilers js:babel-core/register",
     "test:watch": "npm test -- --watch"
   },
@@ -30,7 +30,8 @@
     "axios": "^0.7.0",
     "redux-thunk": "^1.0.0",
     "redux-logger": "^2.0.1",
-    "body-parser": "^1.14.1"
+    "body-parser": "^1.14.1",
+    "babel-plugin-react-transform": "^1.1.1"
   },
   "devDependencies": {
     "babel-core": "^5.6.18",
@@ -45,7 +46,7 @@
     "raw-loader": "^0.5.1",
     "react-transform-hmr": "^0.1.4",
     "style-loader": "^0.12.3",
-    "webpack": "^1.9.11",
+    "webpack": "^1.12.2",
     "webpack-dev-server": "^1.9.0",
     "eslint": "^1.5.1",
     "eslint-plugin-react": "^3.4.2",
@@ -54,6 +55,12 @@
     "gulp-sourcemaps": "^1.6.0",
     "gulp-autoprefixer": "^3.0.2",
     "gulp-sass": "^2.0.4",
-    "redux-devtools": "^2.1.5"
+    "redux-devtools": "^2.1.5",
+    "sass-loader": "^3.0.0",
+    "node-sass": "^3.3.3",
+    "webpack-dev-middleware": "^1.2.0",
+    "webpack-hot-middleware": "^2.3.0",
+    "react-transform-catch-errors": "^1.0.0",
+    "redbox-react": "^1.1.1"
   }
 }

@@ -10,6 +10,7 @@ var sass = require('gulp-sass');
 var sourcemaps = require('gulp-sourcemaps');
 var autoprefixer = require('gulp-autoprefixer');
 var rename = require('gulp-rename');
+var config = require('./webpack.config.prod.js');
 
 var port = 3002;
 
@@ -27,34 +28,7 @@ gulp.task('build-sass', function () {
 
 gulp.task('webpack', function(callback) {
 	// run webpack
-	webpack({
-		devtool: 'cheap-module-eval-source-map',
-		entry: [
-			'./src/client/index'
-		],
-		output: {
-			path: path.join(__dirname, 'public'),
-			filename: 'bundle.js',
-			publicPath: '/public/'
-		},
-		module: {
-		loaders: [{
-				test: /\.js$/,
-				loaders: ['babel'],
-				exclude: /node_modules/,
-				include: __dirname
-			}, {
-				test: /\.css?$/,
-				loaders: ['style', 'raw'],
-				include: __dirname
-			}, {
-            test: /\.jsx$/,
-				loaders: ['babel'],
-				exclude: /node_modules/,
-				include: __dirname
-			}]
-		}
-    }, function(err, stats) {
+	webpack(config, function(err, stats) {
         if (err) throw new gutil.PluginError('webpack', err);
         gutil.log('[webpack]', stats.toString({
             // output options

@@ -24,6 +24,18 @@ app.use(function(req, res, next) {
    }
 });
 
+var dev = app.get("env") === 'development';
+
+if (dev) {
+   var webpack = require('webpack');
+   var webpackDevMiddleware = require('webpack-dev-middleware');
+   var webpackHotMiddleware = require('webpack-hot-middleware');
+   var config = require('../../webpack.config.dev.js');
+   var compiler = webpack(config);
+   app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: '/public/' }));
+   app.use(webpackHotMiddleware(compiler));
+}
+
 // Use this middleware to serve up static files built into the public directory
 app.use(require('serve-static')(path.join(__dirname, '../../public')));
 
@@ -92,7 +104,7 @@ function renderFullPage(html, sidebarhtml, initialState) {
    <html>
       <head>
          <title>TODO</title>
-         <link rel="stylesheet" type="text/css" href="client.css">
+         ${dev ? '' : '<link rel="stylesheet" type="text/css" href="client.css">'}
       </head>
       <body class="two-column">
          <div class="left-panel panel">
@@ -104,7 +116,7 @@ function renderFullPage(html, sidebarhtml, initialState) {
          <script>
             window.__INITIAL_STATE__ = ${JSON.stringify(initialState)};
          </script>
-         <script src="/bundle.js"></script>
+         ${dev ? '<script src="public/bundle.js"></script>' : '<script src="/bundle.js"></script>'}
       </body>
    </html>
     `;

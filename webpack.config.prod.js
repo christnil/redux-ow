@@ -30,6 +30,10 @@ module.exports = [
                loaders: ['babel'],
                exclude: /node_modules/,
                include: __dirname
+            },
+            {
+               test: /\.scss$/,
+               loaders: [path.join(__dirname, 'myloader')]
             }
          ]
       }
