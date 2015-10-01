@@ -11,11 +11,12 @@ var sourcemaps = require('gulp-sourcemaps');
 var autoprefixer = require('gulp-autoprefixer');
 var rename = require('gulp-rename');
 var config = require('./webpack.config.prod.js');
+var open = require('gulp-open');
 
 var port = 3002;
 
 function reportChange(event){
-  console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
+  console.log('File ' + event.path + ' was ' + event.type + ', running tasks...'); //eslint-disable-line
 }
 
 gulp.task('build-sass', function () {
@@ -56,7 +57,14 @@ gulp.task('watch', function (done) {
    })
    .on('start', function onStart() {
       // ensure start only got called once
-      if (!called) { done(); }
+      if (!called) {
+         console.log('listening on port: 3000, opening browsers'); //eslint-disable-line
+         setTimeout(function() {
+            gulp.src(__filename)
+              .pipe(open({uri: 'http://localhost:3000'}));
+            done();
+         }, 5000);
+      }
       called = true;
    });
 });
